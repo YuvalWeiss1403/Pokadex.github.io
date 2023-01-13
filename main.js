@@ -28,7 +28,7 @@ function loadPokemons(){
         const pokemonImage = document.createElement("img");
         pokemonName.innerHTML = data[i].name.english
         pokemonImage.src = data[i].image.thumbnail;
-        data[i].inFavorite = false;
+        data[i].inFavorite;
     //getting the id number 
     pokemonID.innerHTML = getPokemonID(i);
     //adding each item of the element its own class name
@@ -113,6 +113,7 @@ function addContentToPokemonCard(SpecificPokemonClicked){
         
         //creating a container fot the whole pokemon card
         const pokemonCardContainer = document.createElement("div");
+        //assigning data in the element of the pokemon card container
 
         pokemonName.innerHTML = SpecificPokemonClicked.name.english;
         pokemonImage.src = SpecificPokemonClicked.image.thumbnail;
@@ -136,31 +137,33 @@ function addContentToPokemonCard(SpecificPokemonClicked){
             pokemonStatus.appendChild(baseElement);
         }
 
+        SpecificPokemonClicked.inFavorite =(localStorage.getItem(`favorites${SpecificPokemonClicked.id}`.inFavorite))|| false;
+        // /-------------------------------------------------------------------------------
+
         favoriteHeart.className=`favorite-heart`;
-        
         favoriteImg.className=`heart-img`;
+        
+
         if(!SpecificPokemonClicked.inFavorite){
             favoriteImg.src="/assets/heart_outline.png"; 
         }else{
-            favoriteImg.src="/assets/is_favorite.png";
+            favoriteImg.className = 'heart-img-active';
         }
         favoriteHeart.appendChild(favoriteImg);
-        
-        let numberOfClicksOnFavoriteButton = 0;
+
         favoriteImg.addEventListener('click',function(){
-            numberOfClicksOnFavoriteButton++;
-            if(numberOfClicksOnFavoriteButton%2==0){
-                favoriteImg.classList.remove('heart-img-active');
-                favoriteImg.className = 'heart-img';
-                // removeFromFavorite(SpecificPokemonClicked);
-                SpecificPokemonClicked.inFavorite = false;
-            }else{
+            if(!SpecificPokemonClicked.inFavorite){
                 favoriteImg.classList.remove('heart-img');
                 favoriteImg.className = 'heart-img-active';
-                // addToFavorite(SpecificPokemonClicked);
-                SpecificPokemonClicked.inFavorite = true;
+                SpecificPokemonClicked.inFavorite=true;
+                addToFavorites(SpecificPokemonClicked);
+            }else{
+                favoriteImg.classList.remove('heart-img-active');
+                favoriteImg.className = 'heart-img';
+                SpecificPokemonClicked.inFavorite = false;
+                removeFromFavorites(SpecificPokemonClicked);
             }
-        })
+        });
         
         //appending all the elements in the modal content div
         cardLeftSide.appendChild(pokemonImage);
@@ -179,9 +182,9 @@ function addContentToPokemonCard(SpecificPokemonClicked){
         modal.style.display="block";
 
         // Get the <span> element that closes the modal
-        const span = document.getElementsByClassName("close")[0];
+        const div = document.getElementById("close");
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        div.onclick = function() {
             modal.style.display = "none";
             modalContent.removeChild(pokemonCardContainer);
             modalContent.removeChild(cardHeading);
@@ -209,5 +212,24 @@ function openCloseMenu(){
 menuBarHome.addEventListener("click",function(){
     openCloseMenu();
 });
-        
+
+const favoritesGallery =document.getElementById("favorites-gallery");
+
+function renderFavorites(){
+    // for (let i = 0; i < favorites.length; i++) {
+    //     const pokeCard = document.createElement("div");
+    //     pokeCard.innerHTML = favorites[i];
+    //     favoritesGallery.appendChild(pokeCard);
+    // }
+}
+
+function addToFavorites(SpecificPokemonClicked){
+    localStorage.setItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
+    renderFavorites();
+}
+
+function removeFromFavorites(SpecificPokemonClicked){
+    localStorage.removeItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
+    renderFavorites();
+}
         
