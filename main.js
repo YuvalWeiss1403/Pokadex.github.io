@@ -28,13 +28,6 @@ function loadPokemons(){
         const pokemonImage = document.createElement("img");
         pokemonName.innerHTML = data[i].name.english
         pokemonImage.src = data[i].image.thumbnail;
-        data[i].inFavorite;
-        if((localStorage.getItem(`favorites${data[i].id}`.inFavorite))){
-            data[i].inFavorite= true;
-        }else{
-            data[i].inFavorite= false;
-        }
-        console.log(`data[i].infavorite = ${data[i].inFavorite}`);
     //getting the id number 
     pokemonID.innerHTML = getPokemonID(i);
     //adding each item of the element its own class name
@@ -143,6 +136,11 @@ function addContentToPokemonCard(SpecificPokemonClicked){
             pokemonStatus.appendChild(baseElement);
         }
 
+        if((localStorage.getItem(`favorites${SpecificPokemonClicked.id}`))){
+            SpecificPokemonClicked.inFavorite= true;
+        }else{
+            SpecificPokemonClicked.inFavorite= false;
+        }
         // SpecificPokemonClicked.inFavorite =(localStorage.getItem(`favorites${SpecificPokemonClicked.id}`.inFavorite));
         console.log(SpecificPokemonClicked.inFavorite);
         // /-------------------------------------------------------------------------------
@@ -223,11 +221,9 @@ menuBarHome.addEventListener("click",function(){
 
 function addToFavorites(SpecificPokemonClicked){
     localStorage.setItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
-    renderFavorites();
 }
 
 function removeFromFavorites(SpecificPokemonClicked){
     localStorage.removeItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
-    renderFavorites();
 }
         
