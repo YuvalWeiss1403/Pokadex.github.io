@@ -141,16 +141,10 @@ function addContentToPokemonCard(SpecificPokemonClicked){
         }else{
             SpecificPokemonClicked.inFavorite= false;
         }
-        // SpecificPokemonClicked.inFavorite =(localStorage.getItem(`favorites${SpecificPokemonClicked.id}`.inFavorite));
-        console.log(SpecificPokemonClicked.inFavorite);
-        // /-------------------------------------------------------------------------------
-
-        favoriteHeart.className=`favorite-heart`;
-        favoriteImg.className=`heart-img`;
         
 
-        if(!SpecificPokemonClicked.inFavorite){
-            favoriteImg.src="/assets/heart_outline.png"; 
+        if(!(localStorage.getItem(`favorites${SpecificPokemonClicked.id}`))){
+            favoriteImg.className=`heart-img`;        
         }else{
             favoriteImg.className = 'heart-img-active';
         }
