@@ -235,15 +235,15 @@ body{
 
 .heart-img{
     margin-right: 12px;
-    content: url("/assets/heart_outline.png");
+    content: url("assets/heart_outline.png");
 }
 .heart-img:hover{
-    content: url("/assets/heart_outline_full.png");
+    content: url("assets/heart_outline_full.png");
     cursor: pointer;
 }
 
 .heart-img-active{
-    content: url("/assets/is_favorite.png");
+    content: url("assets/is_favorite.png");
     margin-right: 12px;
 }
 
