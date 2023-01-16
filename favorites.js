@@ -21,7 +21,28 @@ menuBarFavorites.addEventListener("click",function(){
 });
 
 
+function renderFavorites(){
+    const favoritesGallery = document.getElementById("favorites-gallery");
+    for (let i = 0; i < localStorage.length; i++) {
+        const myKey = localStorage.key(i);
+        const myValue = localStorage.getItem(myKey);
+        const myPokemon = data[myValue];
+        const pokemonItem = document.createElement("div");
+        const pokemonID = document.createElement("div");
+        const pokemonName = document.createElement("div");
+        const pokemonImage = document.createElement("img");
+        pokemonName.innerHTML = myPokemon.name.english;
+        pokemonImage.src = myPokemon.image.thumbnail;
+        pokemonID.innerHTML = getPokemonID(myPokemon.id);
+        pokemonItem.appendChild(pokemonID);
+        pokemonItem.appendChild(pokemonImage);
+        pokemonItem.appendChild(pokemonName);
+        //adding the pokemon to the pokemon gallery
+        favoritesGallery.appendChild(pokemonItem);
+    }
+}
 
+renderFavorites();
 
 
 

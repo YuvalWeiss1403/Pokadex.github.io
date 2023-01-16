@@ -214,10 +214,10 @@ menuBarHome.addEventListener("click",function(){
 
 
 function addToFavorites(SpecificPokemonClicked){
-    localStorage.setItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
+    localStorage.setItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked.id));
 }
 
 function removeFromFavorites(SpecificPokemonClicked){
-    localStorage.removeItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked));
+    localStorage.removeItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked.id));
 }
         
