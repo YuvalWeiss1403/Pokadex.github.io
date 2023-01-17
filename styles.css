@@ -124,7 +124,7 @@ body{
     color: #020166;
 }
 .favorite-item img{
-    object-fit: fill;
+    object-fit: contain;
 
 }
 
@@ -457,5 +457,11 @@ body{
     }
     .navbar-option-menu{
         display: block;
+    }
+}
+
+@media only screen and (min-width:690px) {
+    #navbar-options{
+        display: flex;
     }
 }
