@@ -99,6 +99,36 @@ body{
     justify-content: center;
     padding-bottom: 70px;
 }
+#favorite-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    padding-bottom: 70px;
+    padding-top: 70px;
+}
+
+.favorite-item{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18%;
+    height: 185px;
+    margin: 10px;
+    padding: 3px;
+    border-radius: 9px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+    background-color: #E5E5E5;;
+}
+
+#favorite-card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
 
 .pokemon-item {
     display: flex;
@@ -111,8 +141,7 @@ body{
     padding: 3px;
     border-radius: 9px;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
-    background-color: #E5E5E5;;
-
+    background-color: #E5E5E5;
 }
 
 .pokemon-item:hover{
@@ -376,7 +405,7 @@ body{
         align-items: center;
         padding: 10px;
     }
-    .pokemon-item{
+    .pokemon-item,.favorite-item{
         min-width: 105px;
     }
     .my-navbar #search-input{
