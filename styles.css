@@ -99,7 +99,7 @@ body{
     justify-content: center;
     padding-bottom: 70px;
 }
-#favorite-gallery{
+#favorites-gallery{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -120,7 +120,12 @@ body{
     padding: 3px;
     border-radius: 9px;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
-    background-color: #E5E5E5;;
+    background-color: #E5E5E5;
+    color: #020166;
+}
+.favorite-item img{
+    object-fit: fill;
+
 }
 
 #favorite-card-header{
@@ -160,6 +165,10 @@ body{
 }
 
 .pokemon-item .pokemon-name{
+    display: flex;
+    justify-content: center;
+}
+.favorite-item .favorite-name{
     display: flex;
     justify-content: center;
 }

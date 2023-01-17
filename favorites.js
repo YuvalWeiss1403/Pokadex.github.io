@@ -1,9 +1,10 @@
 import data from "./pokedex.json" assert {type:"json"};
 
-let loadPokemon = localStorage.length;
+
 let clicksOpenOrClose = 0;
 const navBarOptions =document.getElementById("navbar-options");
 const menuBarFavorites = document.getElementById("menu-bar-favorites");
+const favoritesGallery = document.getElementById("favorites-gallery");
 
 
 
@@ -22,24 +23,28 @@ menuBarFavorites.addEventListener("click",function(){
 
 
 function renderFavorites(){
-    const favoritesGallery = document.getElementById("favorites-gallery");
-    favoritesGallery.id ='favorite-gallery';
     for (let i = 0; i < localStorage.length; i++) {
         const myKey = localStorage.key(i);
         const myValue = localStorage.getItem(myKey);
-        const myPokemon = data[myValue];
+        const myPokemon = data[myValue-1];
+        console.log(myPokemon);
         const pokemonItem = document.createElement("div");
         const pokemonHeader = document.createElement("div");
         const pokemonID = document.createElement("div");
         const pokemonName = document.createElement("div");
+        pokemonName.className = `favorite-name`;
         const pokemonImage = document.createElement("img");
         const removeFavorite = document.createElement("div");
         pokemonName.innerHTML = myPokemon.name.english;
         pokemonImage.src = myPokemon.image.thumbnail;
-        pokemonID.innerHTML = getPokemonID(myPokemon.id);
+        pokemonID.innerHTML = getPokemonID(myPokemon.id-1);
         removeFavorite.innerHTML =`&#x78;`;
         pokemonItem.className = "favorite-item";
+        pokemonItem.id =`favorite-item-${myPokemon.id}`;
         pokemonHeader.id = 'favorite-card-header';
+        removeFavorite.addEventListener('click',function(){
+            removeFromFavorites(myPokemon.id)});
+        removeFavorite.style.cursor="pointer";
         pokemonHeader.appendChild(pokemonID);
         pokemonHeader.appendChild(removeFavorite);
         pokemonItem.appendChild(pokemonHeader);
@@ -53,7 +58,6 @@ function renderFavorites(){
 renderFavorites();
 
 
-
 //function to create the right id format 
 function getPokemonID(index){
     if(index<10){
@@ -65,12 +69,13 @@ function getPokemonID(index){
     }
 }
 
-function removeFromFavorites(SpecificPokemonClicked){
-    localStorage.removeItem(`favorites${SpecificPokemonClicked.id}`, JSON.stringify(SpecificPokemonClicked.id));
+function removeFromFavorites(myID){
+    console.log(myID);
+    localStorage.removeItem(`favorites${myID}`, JSON.stringify(myID));
+    favoritesGallery.removeChild(document.querySelector(`#favorite-item-${myID}`));
 }
     
 
-// const removeFavorite = document.getElementById('favorite-card-header');
-// removeFavorite.addEventListener('click',removeFromFavorites);
+
        
 
